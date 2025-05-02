@@ -4,7 +4,9 @@
   "description": "nodejs study",
   "main": "App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node dist/app.js",
+    "dev": "tsc && node dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,10 @@
   "homepage": "https://github.com/nhatjhaof/nodejs-study#readme",
   "dependencies": {
     "express": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.0",
+    "@types/node": "22.10.7",
+    "typescript": "5.7.3"
   }
 }
