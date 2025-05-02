@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-study",
+  "version": "1.0.0",
+  "description": "nodejs study",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhatjhaof/nodejs-study.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhatjhaof/nodejs-study/issues"
+  },
+  "homepage": "https://github.com/nhatjhaof/nodejs-study#readme",
+  "dependencies": {
+    "express": "5.0.1"
+  }
+}
