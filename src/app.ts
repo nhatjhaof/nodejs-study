@@ -2,6 +2,7 @@ import express from "express";
 // require('dotenv').config()
 import 'dotenv/config';
 import webRoutes from "./routes/web";
+import initDatabase from "config/seed";
 const app = express();
 const port = 8080;
 
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //config web routes
 webRoutes(app);
-
+//seeding database
+initDatabase();
 app.listen(port, () => {
     console.log(`My app is running on port : ${port}`);
 })
