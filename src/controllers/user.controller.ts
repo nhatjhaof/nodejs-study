@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { getAllUser, getUserById, handleCreateUser, handleDeleteUser, handleUpdateUser } from "services/user-service";
+import { getAllRole, getAllUser, getUserById, handleCreateUser, handleDeleteUser, handleUpdateUser } from "services/user-service";
 const getHomePage = async (req: Request, res: Response) => {
     const users = await getAllUser();
     return res.render("home", {
@@ -10,12 +10,11 @@ const getCreateAUser = (req: Request, res: Response) => {
     return res.render("create-user");
 }
 const PostCreateUser = async (req: Request, res: Response) => {
-    console.log(">>>>> check data:", req.body);
-    const { fullName, email, address } = req.body;
-    // console.log("check fullName:", fullName);
-    // console.log("check email:", email);
-    await handleCreateUser(fullName, email, address);
-    return res.redirect("/");
+    const { fullName, username, phone, role, address } = req.body;
+    const file = req.file;
+    const avatar = file?.filename ?? "";
+    await handleCreateUser(fullName, username, address, phone, avatar, role);
+    return res.redirect("/admin/users");
 }
 
 const PostDeleteUser = async (req: Request, res: Response) => {
@@ -26,16 +25,20 @@ const PostDeleteUser = async (req: Request, res: Response) => {
 
 const getViewUser = async (req: Request, res: Response) => {
     const { id } = req.params;
+    const roles = await getAllRole();
     const users = await getUserById(id);
-    return res.render("view-user", {
+    return res.render("admin/users/view-user", {
         id: id,
-        user: users
+        user: users,
+        roles
     });
 }
 
 const PostUpdateUser = async (req: Request, res: Response) => {
-    const { id, fullName, email, address } = req.body;
-    await handleUpdateUser(id, fullName, email, address);
-    return res.redirect("/");
+    const { id, fullName, phone, role, address } = req.body;
+    const file = req.file
+    const avatar = file?.filename ?? "";
+    await handleUpdateUser(id, fullName, phone, role, address, avatar);
+    return res.redirect("/admin/users");
 }
 export { getHomePage, getCreateAUser, PostCreateUser, PostDeleteUser, getViewUser, PostUpdateUser };
