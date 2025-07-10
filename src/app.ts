@@ -1,10 +1,11 @@
 import express from "express";
 // require('dotenv').config()
 import 'dotenv/config';
-import webRoutes from "./routes/web";
+// import webRoutes from "./routes/web";
 import initDatabase from "config/seed";
+import webRoutes from "routes/web";
 const app = express();
-const port = 8080;
+const port = 8081;
 
 //config web static
 app.use(express.static('public'));

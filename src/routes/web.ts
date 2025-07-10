@@ -3,6 +3,7 @@ import express, { Express } from "express";
 import { getHomePage, PostCreateUser, PostDeleteUser, getViewUser, PostUpdateUser } from "controllers/user.controller";
 import { getDashboardPage, getUserPage, getProductPage, getOrderPage, getCreateAUserPage } from "controllers/admin/dashboard.controller";
 import fileUploadMiddleware from "src/middleware/multer";
+import { getLoginPageClient, getRegisterPageClient } from 'controllers/client/auth.controller';
 
 const router = express.Router();
 
@@ -45,5 +46,9 @@ const webRoutes = (app: Express) => {
     router.post("/admin/handle-update-product", fileUploadMiddleware("avatarProduct", "images/product"), PostUpdateProduct);
 
     router.get("/admin/order", getOrderPage);
+
+    router.get("/login", getLoginPageClient);
+
+    router.get("/register", getRegisterPageClient)
 }
 export default webRoutes;

@@ -3,9 +3,13 @@ import { ProductSchema, TProductSchema } from './../../validation/product.schema
 import e, { Response, Request } from "express";
 import { getAllRole, getAllUser } from "services/admin/user-service";
 import { getAllProduct, getProductById, handleCreateProduct, handleDeleteProduct, handleUpdateProduct } from 'services/admin/product-service';
+import { ProductDetail } from 'services/client/item.service';
 const getProductDetail = async (req: Request, res: Response) => {
-
-    return res.render("client/product/product-detail.ejs");
+    const { id } = req.params;
+    const product = await ProductDetail(+id);
+    return res.render("client/product/product-detail.ejs", {
+        product
+    });
 }
 
 const getCreateProductPage = async (req: Request, res: Response) => {
